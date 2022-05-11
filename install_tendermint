@@ -1,0 +1,37 @@
+#!/bin/bash
+
+function logo {
+  curl -s https://raw.githubusercontent.com/95brsu/tools/main/nuts.sh | bash
+}
+
+function line {
+  echo "-------------------------------------------------"
+}
+
+function colors {
+  GREEN="\e[1m\e[32m"
+  RED="\e[1m\e[39m"
+  NORMAL="\e[0m"
+}
+
+
+function install_tendermint {
+  rm -rf tendermint
+  cd $HOME && git clone https://github.com/tendermint/tendermint.git && cd tendermint
+  git checkout v0.35.4
+  make install
+  tendermint version
+  }
+  
+
+colors
+
+line
+logo
+line
+echo -e "${RED}Начинаем установку GO ${NORMAL}"
+line
+install_tendermint
+line
+
+echo -e "${RED}TENDERMINT установлен! Извините за внимание! ${NORMAL}"
